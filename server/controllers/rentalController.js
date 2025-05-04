@@ -1,10 +1,7 @@
-const Rental = require('../models/Rental');
-
-const User = require('../models/User'); // ✅ Import User model
-
-
+import Rental from "../models/Rental.js";
+import User from "../models/User.js";
 // Create a rental
-exports.createRental = async (req, res) => {
+export const createRental = async (req, res) => {
   try {
     const {
       equipmentId,
@@ -44,7 +41,7 @@ exports.createRental = async (req, res) => {
 
 
 // Get rentals by customer
-exports.getRentalsByCustomer = async (req, res) => {
+export const getRentalsByCustomer = async (req, res) => {
   try {
     const rentals = await Rental.find({ customerId: req.params.customerId }).sort({ rentalDate: -1 });
     res.json(rentals);
@@ -56,7 +53,7 @@ exports.getRentalsByCustomer = async (req, res) => {
 
 
 // Get rentals by owner
-exports.getRentalsByOwner = async (req, res) => {
+export const getRentalsByOwner = async (req, res) => {
   try {
     const rentals = await Rental.find({ ownerId: req.params.ownerId }).sort({ rentalDate: -1 });
 

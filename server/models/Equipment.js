@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const equipmentSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   image: { type: String, required: true },
   description: { type: String, required: true },
-  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // 🔥 NEW: Owner ID
-  createdAt: { type: Date, default: Date.now }
+  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Equipment', equipmentSchema);
+export default mongoose.model("Equipment", equipmentSchema);

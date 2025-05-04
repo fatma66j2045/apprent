@@ -6,4 +6,4 @@ router.post('/', createRentalRequest); // Create rental
 router.get('/owner/:ownerId', getOwnerRequests); // Fetch rentals for owner
 router.put('/:id', updateRequestStatus); // Update rental status
 
-module.exports = router;
+export default router;

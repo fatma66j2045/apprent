@@ -1,8 +1,8 @@
 // backend/controllers/equipmentController.js
-const Equipment = require('../models/Equipment');
 
+import Equipment from "../models/Equipment.js";
 // Add new equipment
-exports.addEquipment = async (req, res) => {
+export const addEquipment = async (req, res) => {
   try {
     const { name, price, description, ownerId } = req.body;
 
@@ -30,7 +30,7 @@ exports.addEquipment = async (req, res) => {
 
 
 // Get all equipment
-exports.getOwnerEquipments = async (req, res) => {
+export const getOwnerEquipments = async (req, res) =>  {
   try {
     const ownerId = req.params.ownerId;
     const equipments = await Equipment.find({ ownerId }).sort({ createdAt: -1 });
@@ -41,7 +41,7 @@ exports.getOwnerEquipments = async (req, res) => {
   }
 };
 
-exports.deleteEquipment = async (req, res) => {
+export const deleteEquipment = async (req, res) => {
   try {
     const equipmentId = req.params.id;
     await Equipment.findByIdAndDelete(equipmentId);
@@ -53,7 +53,7 @@ exports.deleteEquipment = async (req, res) => {
 };
 
 // Update equipment
-exports.updateEquipment = async (req, res) => {
+export const updateEquipment = async (req, res) => {
   try {
     const equipmentId = req.params.id;
     const { name, price, description } = req.body;
@@ -72,7 +72,7 @@ exports.updateEquipment = async (req, res) => {
 };
 
 // Get all equipment (for admin future use)
-exports.getAllEquipment = async (req, res) => {
+export const getAllEquipment = async (req, res) =>{
   try {
     const equipments = await Equipment.find().sort({ createdAt: -1 });
     res.json(equipments);

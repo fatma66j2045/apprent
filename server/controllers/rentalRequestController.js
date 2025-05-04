@@ -1,7 +1,7 @@
-const RentalRequest = require('../models/RentalRequest');
+import RentalRequest from "../models/RentalRequest.js";
 
 // Create rental request (by customer)
-exports.createRentalRequest = async (req, res) => {
+export const createRentalRequest = async (req, res) => {
   try {
     const { equipmentId, customerId, ownerId, rentalDuration, totalCost } = req.body;
 
@@ -22,7 +22,7 @@ exports.createRentalRequest = async (req, res) => {
 };
 
 // Get all rental requests for owner
-exports.getOwnerRequests = async (req, res) => {
+export const getOwnerRequests = async (req, res) => {
   try {
     const ownerId = req.params.ownerId;
     const requests = await RentalRequest.find({ ownerId })
@@ -38,7 +38,7 @@ exports.getOwnerRequests = async (req, res) => {
 };
 
 // Update rental request status
-exports.updateRequestStatus = async (req, res) => {
+export const updateRequestStatus = async (req, res) => {
   try {
     const requestId = req.params.id;
     const { status } = req.body;

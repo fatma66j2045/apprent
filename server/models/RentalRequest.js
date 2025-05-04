@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const rentalRequestSchema = new mongoose.Schema({
-  equipmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Equipment', required: true },
-  customerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // Equipment Owner
-  rentalDuration: { type: String, required: true }, // e.g., "1 Day", "3 Days", "1 Week"
-  status: { type: String, default: 'pending' }, // pending / approved / rejected
+  equipmentId: { type: mongoose.Schema.Types.ObjectId, ref: "Equipment", required: true },
+  customerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  rentalDuration: { type: String, required: true },
+  status: { type: String, default: "pending" },
   totalCost: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('RentalRequest', rentalRequestSchema);
+export default mongoose.model("RentalRequest", rentalRequestSchema);
