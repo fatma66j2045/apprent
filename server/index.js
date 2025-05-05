@@ -18,7 +18,11 @@ const __dirname = dirname(__filename);
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: 'https://apprent-client.onrender.com',
+  credentials: true
+}));
+
 app.use(express.json());
 
 // ✅ Serve static image files from /assets/images
