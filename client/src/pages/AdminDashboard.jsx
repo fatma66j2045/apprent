@@ -1,20 +1,25 @@
-// src/pages/AdminDashboard.js
-
 import React from 'react';
 import Navbar from '../components/Navbar';
-import Location from '../components/Location';
-
+import useLocation from '../utils/useLocation';
 
 const AdminDashboard = () => {
+  const { placeInfo, error } = useLocation();
+
   return (
     <>
-      <Navbar /> {/* ✅ Use the same navbar */}
+      <Navbar />
       <div style={styles.container}>
         <h2 style={styles.title}>Welcome Owner</h2>
         <p style={styles.subtitle}>Manage your tools, customers, and rental requests here.</p>
-        <Location/>
 
-        {/* ✅ Later we will add Manage Equipment, View Customers, Rental Requests, Billing Reports */}
+        {error && <p style={styles.error}>{error}</p>}
+        {placeInfo && (
+          <div style={styles.locationBox}>
+            <p><strong>City:</strong> {placeInfo.city}</p>
+            <p><strong>Region:</strong> {placeInfo.region}</p>
+            <p><strong>Country:</strong> {placeInfo.country}</p>
+          </div>
+        )}
       </div>
     </>
   );
@@ -35,6 +40,20 @@ const styles = {
   subtitle: {
     fontSize: '18px',
     color: '#555',
+  },
+  locationBox: {
+    marginTop: '30px',
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '10px',
+    display: 'inline-block',
+    textAlign: 'left',
+    color: '#333',
+    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+  },
+  error: {
+    color: 'red',
+    marginTop: '20px',
   },
 };
 

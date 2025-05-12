@@ -6,12 +6,12 @@ import Navbar from '../components/Navbar';
 import Swal from 'sweetalert2';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../Store/cartSlice';
-
+import useLocation from "../utils/useLocation";
 const Home = () => {
   const [equipmentList, setEquipmentList] = useState([]);
   const [selectedEquipment, setSelectedEquipment] = useState(null);
   const [rentalDuration, setRentalDuration] = useState('');
-
+  const { placeInfo, error: locationError } = useLocation();
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
   const API_URL = process.env.REACT_APP_SERVER_URL;
@@ -81,6 +81,14 @@ const Home = () => {
       <Navbar />
       <div style={styles.container}>
         <h2 style={styles.heading}>Browse Equipment</h2>
+        {placeInfo && (
+  <div style={styles.locationBox}>
+    <p style={styles.locationText}>
+      📍 You’re browsing from: <strong>{placeInfo.city}, {placeInfo.region}, {placeInfo.country}</strong>
+    </p>
+  </div>
+)}
+
         <div style={styles.cardGrid}>
           {equipmentList.map((item, index) => (
             <EquipmentCard
@@ -189,6 +197,20 @@ const styles = {
     fontWeight: 'bold',
     cursor: 'pointer',
   },
+  locationBox: {
+  backgroundColor: "#fff3cd",
+  padding: "12px 20px",
+  marginBottom: "20px",
+  borderRadius: "8px",
+  border: "1px solid #ffeeba",
+  textAlign: "center",
+},
+locationText: {
+  margin: 0,
+  fontSize: "16px",
+  color: "#856404",
+},
+
 };
 
 export default Home;
