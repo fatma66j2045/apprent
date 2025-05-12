@@ -1,5 +1,3 @@
-// src/pages/Register.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,8 +38,6 @@ const Register = () => {
       if (res.ok) {
         setMessageType('success');
         setMessage('✅ ' + data.message);
-
-        // Optional: clear form
         setName('');
         setEmail('');
         setPassword('');
@@ -78,8 +74,9 @@ const Register = () => {
           </div>
         )}
 
-        <label style={styles.label}>Name</label>
+        <label htmlFor="name" style={styles.label}>Name</label>
         <input
+          id="name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -87,8 +84,9 @@ const Register = () => {
           style={styles.input}
         />
 
-        <label style={styles.label}>Email</label>
+        <label htmlFor="email" style={styles.label}>Email</label>
         <input
+          id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -96,8 +94,9 @@ const Register = () => {
           style={styles.input}
         />
 
-        <label style={styles.label}>Password</label>
+        <label htmlFor="password" style={styles.label}>Password</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -105,8 +104,9 @@ const Register = () => {
           style={styles.input}
         />
 
-        <label style={styles.label}>Confirm Password</label>
+        <label htmlFor="confirmPassword" style={styles.label}>Confirm Password</label>
         <input
+          id="confirmPassword"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -114,8 +114,9 @@ const Register = () => {
           style={styles.input}
         />
 
-        <label style={styles.label}>I am a:</label>
+        <label htmlFor="role" style={styles.label}>I am a:</label>
         <select
+          id="role"
           value={role}
           onChange={(e) => setRole(e.target.value)}
           style={styles.input}

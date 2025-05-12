@@ -20,6 +20,7 @@ const app = express();
 // Middlewares
 app.use(cors({
   origin: 'https://apprent-client.onrender.com',
+  
   credentials: true
 }));
 

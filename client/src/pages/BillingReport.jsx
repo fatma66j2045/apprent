@@ -5,6 +5,7 @@ import { Bar } from 'react-chartjs-2';
 import Swal from 'sweetalert2';
 import 'chart.js/auto';
 import { useSelector } from 'react-redux';
+import { useCallback } from 'react';
 
 const BillingReport = () => {
   const [rentals, setRentals] = useState([]);
@@ -16,25 +17,26 @@ const BillingReport = () => {
   const user = useSelector((state) => state.users.user);
   const API_URL = process.env.REACT_APP_SERVER_URL;
 
-  useEffect(() => {
-    if (user?.role === 'owner') {
-      fetchBillingData();
-    }
-  }, [user]);
 
-  const fetchBillingData = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/rentals/owner/${user._id}`);
-      const data = await res.json();
 
-      const approvedRentals = data.filter(rental => rental.status.toLowerCase() === 'approved');
-      setRentals(approvedRentals);
-      setFilteredRentals(approvedRentals);
-    } catch (error) {
-      console.error('Error fetching billing data:', error);
-      Swal.fire('Error', 'Could not fetch billing data.', 'error');
-    }
-  };
+const fetchBillingData = useCallback(async () => {
+  try {
+    const res = await fetch(`${API_URL}/api/rentals/owner/${user._id}`);
+    const data = await res.json();
+    const approvedRentals = data.filter(rental => rental.status.toLowerCase() === 'approved');
+    setRentals(approvedRentals);
+    setFilteredRentals(approvedRentals);
+  } catch (error) {
+    console.error('Error fetching billing data:', error);
+    Swal.fire('Error', 'Could not fetch billing data.', 'error');
+  }
+}, [API_URL, user]);
+
+useEffect(() => {
+  if (user?.role === 'owner') {
+    fetchBillingData();
+  }
+}, [user, fetchBillingData]);
 
   const handleFilter = () => {
     if (!fromDate || !toDate) {

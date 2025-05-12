@@ -1,5 +1,3 @@
-// src/pages/Login.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -31,11 +29,7 @@ const Login = () => {
       if (res.ok) {
         setMessageType('success');
         setMessage('✅ ' + data.message);
-
-        // ✅ Save to Redux
         dispatch(loginSuccess(data.user));
-
-        // ✅ Save to localStorage (for persistence)
         localStorage.setItem('user', JSON.stringify(data.user));
 
         setTimeout(() => {
@@ -76,8 +70,9 @@ const Login = () => {
           </div>
         )}
 
-        <label style={styles.label}>Email</label>
+        <label htmlFor="email" style={styles.label}>Email</label>
         <input
+          id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -85,8 +80,9 @@ const Login = () => {
           style={styles.input}
         />
 
-        <label style={styles.label}>Password</label>
+        <label htmlFor="password" style={styles.label}>Password</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
