@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
-const OPENCAGE_API_URL = process.env.REACT_APP_OPENCAGE_API_URL;
+const OPENCAGE_API_KEY = "b95e3db350bf433b9794a9dbec9f7513";
+const OPENCAGE_API_URL = "https://api.opencagedata.com/geocode/v1/json";
+
 
 const useLocation = () => {
   const [placeInfo, setPlaceInfo] = useState(null);
