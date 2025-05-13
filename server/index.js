@@ -19,10 +19,12 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin: 'https://apprent-client.onrender.com',
-  
+  origin: ['https://apprent-client.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 
 app.use(express.json());
 
